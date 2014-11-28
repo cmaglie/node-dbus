@@ -131,10 +131,10 @@ module.exports.createClient = function(params) {
   return new MessageBus(connection, params || {});
 };
 
-module.exports.systemBus = function() {
-  return module.exports.createClient({
-    socket: '/var/run/dbus/system_bus_socket'
-  });
+module.exports.systemBus = function(opts) {
+    opts = opts || {};
+    opts.socket = '/var/run/dbus/system_bus_socket';
+    return module.exports.createClient(opts);
 };
 
 module.exports.sessionBus = function(opts) {
